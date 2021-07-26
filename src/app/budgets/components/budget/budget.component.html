@@ -15,7 +15,9 @@
 
                 <div class="form-group col-auto">
                     <label>State</label>
-                    <input class="form-control" type="text" formControlName="state_id">
+                   <select formControlName="state_id">
+                       <option *ngFor="let item of states$ | async" [value]="item.id">{{item.name}}</option>
+                   </select>
                 </div>
 
                 <div class="form-group mt-4 mb-4">
