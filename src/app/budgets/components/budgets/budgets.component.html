@@ -1,0 +1,55 @@
+<div class="container">
+    <h4>Budgets <span class="badge badge-secondary"></span></h4>  
+  </div>
+  
+  <div class="container">
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Total Cost</th>
+        </tr>
+      </thead>
+  
+      <tbody>
+        <tr *ngFor="let budget of budgets" [routerLink]="['/budgets', budget.id]">
+          <td>{{ budget.id }}</td>
+          <td>{{ budget.name }}</td>
+          <td>{{ budget.description }}</td>
+          <td>{{ budget.total }}</td>
+
+          <!-- <td class="d-flex justify-content-center">
+            <button type="button" class="btn btn-link text-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <fa-icon [icon]="faTrashAlt"></fa-icon>
+            </button>          
+          </td> -->
+          
+          <!-- Modal -->
+          <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  Are you sure you want to delete this user?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="delete(budget.id)">Delete</button>
+                </div>
+              </div>
+            </div>
+          </div> -->
+  
+        </tr>
+      </tbody>
+    </table>  
+  
+  </div>
+  
+  

@@ -1,0 +1,100 @@
+<!-- mt-x mb-x ml-x mr-x
+     mt-x mb-x ms-x me-x -->
+
+<div class="container" *ngIf="form">
+
+    <form [formGroup]="form">
+        <fieldset>
+            <legend>Add Budget</legend>
+
+            <div class="row">
+                <div class="form-group mt-12 mb-4">
+                    <label>Name </label>
+                    <input class="form-control" formControlName="name">
+                </div>
+
+                <div class="form-group col-auto">
+                    <label>State</label>
+                    <input class="form-control" type="text" formControlName="state_id">
+                </div>
+
+                <div class="form-group mt-4 mb-4">
+                    <label>Description: </label>
+                    <textarea class="form-control" rows="3" formControlName="description"></textarea>
+                </div>
+
+                <div class="container">
+                    <h5>Budget Lines</h5>
+                </div>
+
+                <ng-container formArrayName="lines">
+
+                    <div class="row" *ngFor="let budgetLine of lines.controls; let i = index" [formGroupName]="i">
+                        
+                        <div class="form-group mt-2">
+                            <input class="form-control" placeholder="Title" formControlName="name">
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control" placeholder="Description" formControlName="description">
+                        </div>
+                        <div class="form-group col-auto">
+                            <input class="form-control" placeholder="State" formControlName="state_id">
+                        </div>
+                        <div class="form-group col-auto ms-auto">
+                            <input class="form-control" placeholder="Cost" formControlName="cost">
+                        </div>
+                        <div class="form-group col-auto ms-auto">
+                            <input class="form-control" placeholder="Cost Per Hour" formControlName="costPerHour">
+                        </div>
+                        <div class="form-group col-auto mb-4 ms-auto">
+                            <input class="form-control" placeholder="Total" formControlName="total">
+                        </div>
+                    </div>
+
+                </ng-container>
+            </div>
+            
+            <button class="btn btn-success mt-4" (click)="addBudgetLine()">Add</button>
+            <button class="btn btn-danger mt-4 mx-4" (click)="removeBudgetLine()">Remove</button>
+            
+            <div class="row">
+                
+                <div class="form-group col-auto mt-4 ms-auto">
+                    <input class="form-control" placeholder="Coste Total" formControlName="total">
+                </div>
+                
+
+            </div>
+
+
+        </fieldset>
+
+    </form>
+
+    <!-- 
+        <a class="btn btn-success me-3" role="button"></a>
+        <a class="btn btn-primary me-3" role="button"></a> -->
+
+</div>
+
+<pre>{{ form?.value | json }}</pre>
+
+
+<!-- <ng-container formArrayName="permissions">
+    <tr *ngFor="let form.get('lines').controls; let i = index" [formGroupName]="i">
+        <td style="width: 1%;">
+            <div ngbRadioGroup role="group" formControlName="value"></div>
+        </td>
+    </tr>
+</ng-container> -->
+
+
+<!--  
+        <div class="d-flex justify-content-center align-items-end" style="background-color: red; height: 80px;">
+            <a class="btn btn-primary me-4" (click)="save()" role="button">Añadir</a>
+            <a class="btn btn-primary p-5" (click)="save()" role="button">Añadir</a>
+            <a class="btn btn-primary align-self-start" (click)="save()" role="button">Añadir</a>
+            <a class="btn btn-primary ms-4 mb-2" (click)="save()" role="button">Añadir</a>
+        </div>
+-->
