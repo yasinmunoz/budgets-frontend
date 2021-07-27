@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BudgetService } from '../../services/budget.service';
 import { first, map, tap } from 'rxjs/operators';
 import { Budget } from '../../interfaces/budget';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-budget',
@@ -23,8 +24,8 @@ export class BudgetComponent implements OnInit {
     lines: this._formBld.array([])
   });
 
-  states$ = this._budgetsSvc.states();
-  lineStates$ = this._budgetsSvc.lineStates();
+  states$: Observable<any[]> = this._budgetsSvc.states();
+  lineStates$: Observable<any[]> = this._budgetsSvc.lineStates();
 
   get lines(): FormArray {
     return this.form.get('lines') as FormArray;
@@ -64,14 +65,14 @@ export class BudgetComponent implements OnInit {
         // Tap hace algo pero no modifica el resultado
         tap((o: Budget) => this.createAndFillForm(o))
       ).subscribe();
-		}
-    
+		}    
 	}
 
   createAndFillForm(budget: Budget) {
     budget.lines?.forEach(budget => this.addBudgetLine());
     this.form.patchValue(budget);
   }
+
 }
 
 

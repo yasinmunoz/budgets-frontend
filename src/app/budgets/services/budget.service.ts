@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -8,6 +8,14 @@ import { environment } from 'src/environments/environment';
 })
 
 export class BudgetService {
+
+  lineStates(): Observable<any[]> {
+    return this._http.post(environment.origin + 'budgets/states', {}) as Observable<any[]>;
+  }
+
+  states(): Observable<any[]> {
+    return this._http.post(environment.origin + 'budgets/states', {}) as Observable<any[]>;
+  }
 
   constructor(
     private _http: HttpClient

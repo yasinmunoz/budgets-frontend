@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  origin: 'http://127.0.0.1:8000/api/'
+  origin: 'http://budgets-backend.test/api/'
 };
 
 /*
