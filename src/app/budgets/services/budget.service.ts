@@ -28,4 +28,8 @@ export class BudgetService {
   find(budgetId:number): Observable <any> {
     return this._http.get(environment.origin + 'budgets/'+budgetId)
   }
+
+  save(data: any): Observable<any> {
+    return this._http.put(environment.origin + 'budgets/', data);
+  }
 }
