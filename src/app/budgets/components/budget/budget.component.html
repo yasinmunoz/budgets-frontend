@@ -63,17 +63,17 @@
             <div class="d-flex align-items-start flex-column">
                 
                 <div class="form-group col-auto mt-4 ms-auto">
-                    <input class="form-control" type="number" placeholder="Total Quantity" formControlName="total_in_hours">
+                    <input class="form-control" type="number" readonly placeholder="Total Quantity" formControlName="total_in_hours">
                 </div>
 
                 <div class="form-group col-auto mt-4 ms-auto">
-                    <input class="form-control" type="number" placeholder="Coste Total" formControlName="total">
+                    <input class="form-control" type="number" readonly placeholder="Coste Total" formControlName="total">
                 </div>                                
 
             </div>
 
             <div class="d-flex flex-row-reverse">                                
-                <button class="btn btn-primary mt-5" (click)="save()" role="button">Save</button>
+                <button class="btn btn-primary mt-5" [disabled]="form.invalid || form.pristine" (click)="save()" role="button">Save</button>
             </div>
             
 

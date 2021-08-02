@@ -4,7 +4,7 @@
   
   <div class="container">
   
-    <table class="table">
+    <table class="table table-hover">
       <thead>
         <tr>
           <th scope="col">id</th>
@@ -15,7 +15,7 @@
       </thead>
   
       <tbody>
-        <tr *ngFor="let budget of budgets" [routerLink]="['/budgets', budget.id]">
+        <tr *ngFor="let budget of budgets" role="button" (click)="goTo(budget)">
           <td>{{ budget.id }}</td>
           <td>{{ budget.name }}</td>
           <td>{{ budget.description }}</td>

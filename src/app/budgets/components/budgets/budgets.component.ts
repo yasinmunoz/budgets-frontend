@@ -16,19 +16,23 @@ export class BudgetsComponent implements OnInit {
     private _formBld: FormBuilder,
     private _budgetsSvc: BudgetService,
     private _activatedRoute: ActivatedRoute,
-    private _router: Router    
+    private _router: Router
   ) { }
 
   ngOnInit(): void {
-    this.initialize ();
+    this.initialize();
   }
 
   async initialize() {
     try {
-      this.budgets = await this._budgetsSvc.all().toPromise();  
+      this.budgets = await this._budgetsSvc.all().toPromise();
     } catch (error) {
       console.log(error);
     }
+  }
+
+  goTo(budget: any): void {
+    this._router.navigate(['/budgets', budget.id])
   }
 
 }
