@@ -5,28 +5,27 @@ import { UserComponent } from './components/user/user.component';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: UsersComponent
-  },
-  {
-    path: 'add',
-    component: UserComponent
-  },
-  {
-    path: ':id',
-    component: UserComponent
-  }
+	{
+		path: '',
+		component: UsersComponent
+	},
+	{
+		path: 'add',
+		component: UserComponent
+	},
+	{
+		path: ':id',
+		component: UserComponent
+	}
 ]
 
 @NgModule({
-  declarations: [
-    UserComponent,
-    UsersComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes)
-  ]
-})
-export class UsersModule { }
+	declarations: [
+		UserComponent,
+		UsersComponent
+	],
+	imports: [
+		CommonModule,
+		RouterModule.forChild(routes)
+	]
+}) export class UsersModule { }

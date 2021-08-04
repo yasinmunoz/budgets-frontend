@@ -11,6 +11,4 @@ import { ConfirmComponent } from './confirm/confirm.component';
     CommonModule,
     FormsModule
   ]
-})
-
-export class SharedModule { }
+}) export class SharedModule { }

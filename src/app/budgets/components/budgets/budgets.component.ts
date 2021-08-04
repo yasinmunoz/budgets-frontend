@@ -32,8 +32,12 @@ export class BudgetsComponent implements OnInit {
   }
 
   async initialize() {
+        
     try {
+      
       this.budgets = await this._budgetsSvc.all().toPromise();
+      console.log('despues');
+      
     } catch (error) {
       console.log(error);
     }
