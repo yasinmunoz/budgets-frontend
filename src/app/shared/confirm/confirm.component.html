@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <h5 class="modal-title"> {{title}}</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <p>{{description}}</p>
+</div>
+
+<div *ngIf="buttons?.length" class="modal-footer">
+  <button *ngFor="let button of buttons" type="button" class="btn btn-{{button.color}}"
+    (click)="handle(button)">{{ button.title }}</button>
+</div>

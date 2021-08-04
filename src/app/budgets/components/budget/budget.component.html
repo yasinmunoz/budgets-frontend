@@ -43,7 +43,7 @@
                         </div>
                         <div class="form-group col-auto mt-1">
                             <select formControlName="state_id">
-                                <option *ngFor="let item of states$ | async" [value]="item.id">{{item.name}}</option>
+                                <option *ngFor="let item of lineStates$ | async" [value]="item.id">{{item.name}}</option>
                             </select>
                         </div>                                               
                         <div class="form-group col-auto ms-auto mt-1">
@@ -74,8 +74,7 @@
 
             <div class="d-flex flex-row-reverse">                                
                 <button class="btn btn-primary mt-5" [disabled]="form.invalid || form.pristine" (click)="save()" role="button">Save</button>
-            </div>
-            
+            </div>            
 
         </fieldset>
 
@@ -83,27 +82,30 @@
 
     <!-- 
         <a class="btn btn-success me-3" role="button"></a>
-        <a class="btn btn-primary me-3" role="button"></a> -->
+        <a class="btn btn-primary me-3" role="button"></a> 
+    -->
 
 </div>
 
 <pre>{{ form?.value | json }}</pre>
 
 
-<!-- <ng-container formArrayName="permissions">
+<!-- 
+<ng-container formArrayName="permissions">
     <tr *ngFor="let form.get('lines').controls; let i = index" [formGroupName]="i">
         <td style="width: 1%;">
             <div ngbRadioGroup role="group" formControlName="value"></div>
         </td>
     </tr>
-</ng-container> -->
+</ng-container> 
+-->
 
 
 <!--  
-        <div class="d-flex justify-content-center align-items-end" style="background-color: red; height: 80px;">
-            <a class="btn btn-primary me-4" (click)="save()" role="button">Añadir</a>
-            <a class="btn btn-primary p-5" (click)="save()" role="button">Añadir</a>
-            <a class="btn btn-primary align-self-start" (click)="save()" role="button">Añadir</a>
-            <a class="btn btn-primary ms-4 mb-2" (click)="save()" role="button">Añadir</a>
-        </div>
+<div class="d-flex justify-content-center align-items-end" style="background-color: red; height: 80px;">
+    <a class="btn btn-primary me-4" (click)="save()" role="button">Añadir</a>
+    <a class="btn btn-primary p-5" (click)="save()" role="button">Añadir</a>
+    <a class="btn btn-primary align-self-start" (click)="save()" role="button">Añadir</a>
+    <a class="btn btn-primary ms-4 mb-2" (click)="save()" role="button">Añadir</a>
+</div>
 -->

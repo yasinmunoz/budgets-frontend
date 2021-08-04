@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class BudgetService {
 
   lineStates(): Observable<any[]> {
-    return this._http.post(environment.origin + 'budgets/states', {}) as Observable<any[]>;
+    return this._http.post(environment.origin + 'budgets/lines/states', {}) as Observable<any[]>;
   }
 
   states(): Observable<any[]> {
@@ -32,4 +32,9 @@ export class BudgetService {
   save(data: any): Observable<any> {
     return this._http.put(environment.origin + 'budgets/', data);
   }
+
+  delete(id: number): Observable<any> {
+    return this._http.delete(environment.origin + 'budgets', { body: { id: id } });
+  }
+
 }

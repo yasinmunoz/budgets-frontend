@@ -110,10 +110,27 @@ export class BudgetComponent implements OnInit {
 			console.log(result);
 
 		} catch (error) {
-			console.log('Error al guardar los datos');
+			console.log('Saving failed');
 		}
+
 	}
 
+	async delete () {
+
+		try {
+			const response = await this._budgetsSvc.delete(this.id).toPromise();
+
+			if (response) {			
+				//this.initialize();	
+				this._router.navigate(['/budgets']);
+			}
+			
+		} catch (error) {
+			console.error("Deleting failed")
+		}
+
+	}
+	
 }
 
 
