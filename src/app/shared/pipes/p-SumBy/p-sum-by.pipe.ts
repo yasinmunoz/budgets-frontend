@@ -7,12 +7,24 @@ import { Pipe, PipeTransform } from '@angular/core';
 */
 
 @Pipe({
-  name: 'pSumBy'
+	name: 'pSumBy'
 })
 export class PSumByPipe implements PipeTransform {
 
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
-  }
+	transform(value: any[], property?: number): number {
+		let sum: number = 0;
+
+		if (value[0] instanceof (Number)) {
+			value.forEach(element => {
+				sum += element;
+			});
+			//return sum;
+		} else {
+			value.forEach(element => {
+				sum += element;
+			});
+		}
+		return sum;
+	}
 
 }
