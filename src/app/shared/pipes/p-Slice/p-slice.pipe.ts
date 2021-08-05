@@ -9,9 +9,8 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'pSlice'
 })
 export class PSlicePipe implements PipeTransform {
-
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+ 
+   transform(vector: any[], posi_Start: number, lenght_SubArray:number): any[] {
+    return vector.slice(posi_Start, posi_Start+lenght_SubArray);
   }
-
 }
