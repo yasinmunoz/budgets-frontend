@@ -8,10 +8,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
   name: 'pInvertColour'
 })
-export class PInvertColourPipe implements PipeTransform {
+export class PInvertColorPipe implements PipeTransform {
 
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+  transform(color: any): unknown {
+    return color.complement;
   }
 
 }

@@ -1,4 +1,4 @@
-import { PInvertColourPipe } from './p-invert-colour.pipe';
+import { PInvertColourPipe } from './p-invert-color.pipe';
 
 describe('PInvertColourPipe', () => {
   it('create an instance', () => {
