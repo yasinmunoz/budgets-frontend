@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { ConfirmButton } from '../interfaces/confirm-button';
+import { ConfirmButton } from '../../interfaces/confirm-button';
+
 
 @Component({
 	selector: 'app-confirm',
@@ -14,6 +15,7 @@ export class ConfirmComponent {
 	message!: string;
 
 	buttons: ConfirmButton[] = [{ title: 'test2' }];
+
 
 	constructor(
 		private _modalRef: BsModalRef

@@ -13,19 +13,12 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link" aria-current="page" [routerLink]="['/budgets']"
-            routerLinkActive="router-link-active">Budgets</a>
+            routerLinkActive="router-link-active">{{'budgets' | pFirstLetterMayus}}</a> <!-- pipe que pone la 1 letra en mayus -->
         </li>
+        <a class="nav-link" aria-current="page" [routerLink]="['/products']"
+          routerLinkActive="router-link-active"> {{ 'productos' | pFirstLetterMayus}} </a>
       </ul>
     </div>
-  </div>
-
-  <div class="collapse navbar-collapse">
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      <li class="nav-item">
-        <a class="nav-link" aria-current="page" [routerLink]="['/products']"
-          routerLinkActive="router-link-active">Productos</a>
-      </li>
-    </ul>
   </div>
 
 </nav>
