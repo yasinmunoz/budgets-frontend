@@ -10,7 +10,9 @@ const routes : Routes = [
 		component : ProductsComponent
 	} , {
 		path : ':id' //:id -> : = parametro
-	} 
+	} , {
+		path : 'add'
+	}
 ]
 
 @NgModule({

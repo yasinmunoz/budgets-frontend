@@ -1,24 +1,66 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
 <div class="container">
+
+    <div class="container">
+        <button class="btn btn-primary" [routerLink]="['/add']">
+            Añadir
+        </button>
+    </div>
+
     <table class="table table-hover">
         <thead>
-          <tr>
-            <th scope="col"> ID </th>
-            <th scope="col"> Nombre </th>
-            <th scope="col"> Camtidad </th>
-            <th scope="col"> Tipo</th>
-            <th scope="col"> Prio </th>
-            <th scope="col"> Precio/unidad $</th>
-          </tr>
+            <tr>
+                <th scope="col"> ID </th>
+                <th scope="col"> Nombre
+                    <button class="btn btn-dark btn-sm" (click)="order(1)">
+                        <!-- icono ordenacion -->
+                        ⇋
+                    </button>
+                </th>
+                <th scope="col"> Cantidad
+                    <button class="btn btn-dark btn-sm" (click)="order(2)">
+                        ⇋
+                    </button>
+                </th>
+                <th scope="col"> Tipo
+                    <button class="btn btn-dark btn-sm" (click)="order(3)">
+                        ⇋
+                    </button>
+                </th>
+                <th scope="col"> Prio
+                    <button class="btn btn-dark btn-sm" (click)="order(4)">
+                        ⇋
+                    </button>
+                </th>
+                <th scope="col"> Precio/unidad $
+                    <button class="btn btn-dark btn-sm" (click)="order(5)">
+                        ⇋
+                    </button>
+                </th>
+            </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of products">
-            <td> {{ item?.id }} </td>
-            <td> {{ item?.name }} </td>
-            <td> {{ item?.cuantity }} </td>
-            <td> {{ item?.type }} </td>
-            <td> {{ item?.prio }} </td>
-            <td> {{ item?.price }} </td>
-          </tr>
+            <tr *ngFor="let item of products" role="button" [routerLink]="['',item?.id]">
+                <td> {{ item?.id }} </td>
+                <td> {{ item?.name }} </td>
+                <td> {{ item?.cuantity }} </td>
+                <td> {{ item?.type }} </td>
+                <td>
+
+                    <div *ngIf="item.prio == 0; then thenBlock else elseBlock"></div>
+                    <ng-template #thenBlock>
+                        <!-- Content to render when condition is true. -->
+                        <i class="fas fa-star"></i>
+                    </ng-template>
+                    <ng-template #elseBlock>
+                        <!-- Content to render when condition is false. -->
+                    </ng-template>
+
+                </td>
+                <td> {{ item?.price }} </td>
+            </tr>
         </tbody>
     </table>
 </div>
