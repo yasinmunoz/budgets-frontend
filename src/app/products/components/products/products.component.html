@@ -1,1 +1,24 @@
-<p>products works!</p>
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col"> ID </th>
+            <th scope="col"> Nombre </th>
+            <th scope="col"> Camtidad </th>
+            <th scope="col"> Tipo</th>
+            <th scope="col"> Prio </th>
+            <th scope="col"> Precio/unidad $</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of products">
+            <td> {{ item?.id }} </td>
+            <td> {{ item?.name }} </td>
+            <td> {{ item?.cuantity }} </td>
+            <td> {{ item?.type }} </td>
+            <td> {{ item?.prio }} </td>
+            <td> {{ item?.price }} </td>
+          </tr>
+        </tbody>
+    </table>
+</div>

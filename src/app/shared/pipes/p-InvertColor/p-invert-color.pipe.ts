@@ -15,7 +15,7 @@ export class PInvertColorPipe implements PipeTransform {
     let hex = '0X' + color.slice(1);
     parseInt(hex);
 
-    const complementaryColor = hex - 0XFFFFFF;
+    const complementaryColor = 0XFFFFFF ^ hex;
     return complementaryColor;
   } */
 
@@ -38,7 +38,7 @@ export class PInvertColorPipe implements PipeTransform {
     return '#' + this.padZero(r) + this.padZero(g) + this.padZero(b);
   }
 
-  padZero(str:string, len:number = 2) {
+  padZero(str: string, len: number = 2) {
     len = len || 2;
     var zeros = new Array(len).join('0');
     return (zeros + str).slice(-len);

@@ -20,9 +20,7 @@ export class BudgetsComponent implements OnInit {
   bottons = ['Bien', 'Mal', 'Regular'];
 
   constructor(
-    private _formBld: FormBuilder,
     private _budgetsSvc: BudgetService,
-    private _activatedRoute: ActivatedRoute,
     private _router: Router,
     private _modalService: BsModalService
   ) { }
@@ -36,7 +34,6 @@ export class BudgetsComponent implements OnInit {
     try {
       
       this.budgets = await this._budgetsSvc.all().toPromise();
-      console.log('despues');
       
     } catch (error) {
       console.log(error);
