@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TableComponent } from 'src/app/shared/table/components/table.component';
 import { Product } from '../../interfaces/product';
 import { ProductsService } from '../../services/products.service';
 
@@ -10,10 +11,37 @@ import { ProductsService } from '../../services/products.service';
 export class ProductsComponent implements OnInit {
 
 	products: Product[] = [];
+	t_headers = [
+		{
+			name: 'ID',
+			value: 'id'
+		} ,
+		{
+			name: 'Nombre',
+			value: 'name'
+		} ,
+		{
+			name: 'Cantidad',
+			value: 'cuantity'
+		} ,
+		{
+			name: 'Categoria',
+			value: 'type'
+		} ,
+		{
+			name: 'Prioridad',
+			value: 'prio'
+		} ,
+		{
+			name: 'Precio',
+			value: 'price'
+		} 
+	];
+	
 
 	constructor(
 		private _productsSVC: ProductsService
-	) { }
+		) { }
 
 	ngOnInit(): void {
 		this.inicialize();
@@ -27,7 +55,7 @@ export class ProductsComponent implements OnInit {
 			console.log(error);
 		}
 	}
-	
+
 	crescent: Boolean = false;
 	order(col: number) {
 
@@ -39,7 +67,7 @@ export class ProductsComponent implements OnInit {
 				}
 				case 2: {
 					this.products.sort((a, b) => {
-						return  (a.cuantity > b.cuantity) ? 1 : -1;
+						return (a.cuantity > b.cuantity) ? 1 : -1;
 					});
 					break;
 				}
@@ -84,8 +112,6 @@ export class ProductsComponent implements OnInit {
 			this.crescent = false;
 		}
 	}
-
-
 
 }
 

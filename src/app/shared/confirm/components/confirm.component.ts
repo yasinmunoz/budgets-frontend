@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { ConfirmButton } from '../../interfaces/confirm-button';
+import { ConfirmButton } from '../interfaces/confirm-button';
 
 
 @Component({

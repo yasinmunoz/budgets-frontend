@@ -1,0 +1,44 @@
+<div class="container">
+
+    <!--     <div class="container">
+        <button class="btn btn-primary" [routerLink]="['/add']">
+            Añadir
+        </button>
+    </div> -->
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th *ngFor="let header of headers" [appSort]="data" data-order="desc" [attr.data-name]="header.name"
+                    scope="col">
+                    {{ header.name }}
+                    <button class="btn btn-dark btn-sm" [appSort]="data" [attr.data-name]='header.value'>
+                        ⇋
+                    </button>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of data; let i = index ">
+                <td *ngFor="let j of headers">
+
+                    <ng-container *ngIf="item[j.value] === true; then star else voidFalseOrNot"></ng-container>
+                    <ng-template #star>
+                        <i class="fas fa-star"></i>
+                    </ng-template>
+                    <ng-template #voidFalseOrNot>
+
+                        <ng-template *ngIf="item[j.value] === false; then falseVoid else defaultTpt"></ng-template>
+                        <ng-template #falseVoid>
+                            {{''}}
+                        </ng-template>
+                        <ng-template #defaultTpt>
+                            {{item[j.value]}}
+                        </ng-template>
+
+                    </ng-template>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

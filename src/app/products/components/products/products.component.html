@@ -9,13 +9,12 @@
         </button>
     </div>
 
-    <table class="table table-hover">
+    <!-- <table class="table table-hover">
         <thead>
             <tr>
                 <th scope="col"> ID </th>
                 <th scope="col"> Nombre
                     <button class="btn btn-dark btn-sm" (click)="order(1)">
-                        <!-- icono ordenacion -->
                         ⇋
                     </button>
                 </th>
@@ -48,19 +47,15 @@
                 <td> {{ item?.cuantity }} </td>
                 <td> {{ item?.type }} </td>
                 <td>
-
-                    <div *ngIf="item.prio == 0; then thenBlock else elseBlock"></div>
+                    <div *ngIf="item.prio == true; then thenBlock"></div>
                     <ng-template #thenBlock>
-                        <!-- Content to render when condition is true. -->
                         <i class="fas fa-star"></i>
-                    </ng-template>
-                    <ng-template #elseBlock>
-                        <!-- Content to render when condition is false. -->
                     </ng-template>
 
                 </td>
                 <td> {{ item?.price }} </td>
             </tr>
         </tbody>
-    </table>
+    </table> -->
+    <app-table [data]="products" [headers]="t_headers"></app-table>
 </div>
