@@ -10,8 +10,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PFilterPipe implements PipeTransform {
 
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+  transform(vector: any[], ...properties: unknown[]): any[] {
+
+    return vector;
   }
 
 }

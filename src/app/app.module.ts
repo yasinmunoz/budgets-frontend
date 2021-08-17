@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { SharedModule } from './shared/shared.module';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { SharedModule } from './shared/shared.module';
     HttpClientModule,
     BrowserAnimationsModule,
     ModalModule.forRoot(),
-    SharedModule
+    SharedModule,
+    AuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
+  /* origin: "http://localhost:8000/api/"  local*/
   origin: 'http://budgets-backend.test/api/'
+  /* origin: '127.0.0.1:8000/api/'  local */
 };
 
 /*
