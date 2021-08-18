@@ -11,6 +11,7 @@ import { User } from './users/interface/user';
 export class AppComponent implements OnInit {
 	title = 'budgets-frontend';
 	user!: any;
+	isCollapsed = false;
 
 	constructor(
 		private authSvc: AuthService,
