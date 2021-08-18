@@ -9,12 +9,13 @@ export class TableComponent implements OnInit {
 
   @Input() headers!: any[];
   @Input() data!: any[];
+  @Input() buttons!: any[];
   
   constructor() { }
 
   ngOnInit(): void {
-	
+    console.log(this.buttons[1].iconClass);
+    
   }
-
 
 }

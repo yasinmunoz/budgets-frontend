@@ -11,6 +11,7 @@ import { PAbsolutePipe } from './pipes/p-Absolutey/p-absolute.pipe';
 import { TableComponent } from './table/components/table.component';
 import { ConfirmComponent } from './confirm/components/confirm.component';
 import { SortDirective } from './directive/sort.directive';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [

@@ -59,7 +59,6 @@ export class AuthService {
 	}
 
 	constructor(private _http: HttpClient) { 
-		console.log('asdf');
 	}
 
 	// User registration
@@ -67,7 +66,7 @@ export class AuthService {
 		return this._http.post(environment.origin + this.prefix + '/register', user);
 	}
 
-	// Login
+	/* // Login antiguo
 	async signin(user: { email: string; password: string }) {
 		try {
 			const result: any = await this._http.post(environment.origin + this.prefix + '/login', user).toPromise();
@@ -81,5 +80,5 @@ export class AuthService {
 			return null;
 		}
 		// return this.http.post(environment.origin + this.prefix + '/login', user);
-	}
+	} */
 }

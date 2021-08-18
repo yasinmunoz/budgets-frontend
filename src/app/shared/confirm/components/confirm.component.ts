@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ConfirmButton } from '../interfaces/confirm-button';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class ConfirmComponent {
 	description!: string;
 	message!: string;
 
-	buttons: ConfirmButton[] = [{ title: 'test2' }];
+	@Input() buttons: ConfirmButton[] = [];
 
 
 	constructor(
@@ -22,10 +23,17 @@ export class ConfirmComponent {
 	) { }
 
 	handle(button: ConfirmButton) {
-		console.log(this.buttons);
+		
+		/* si el boton tiene modo de actuar propio.... */
 		if (button.handler) {
 			button.handler();
 		}
+
+		/* por ultimo ocultar el modal */
+		this._modalRef.hide();
+	}
+
+	close() {
 		this._modalRef.hide();
 	}
 }

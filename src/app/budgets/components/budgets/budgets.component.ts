@@ -1,84 +1,125 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BudgetService } from '../../services/budget.service';
-import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
 import { ConfirmButton } from 'src/app/shared/confirm/interfaces/confirm-button';
 import { ConfirmComponent } from 'src/app/shared/confirm/components/confirm.component';
+import { Budget } from '../../interfaces/budget';
+/* import { Directive, ElementRef } from '@angular/core';
+ */
+
 
 
 @Component({
-  selector: 'app-budgets',
-  templateUrl: './budgets.component.html',
-  styleUrls: ['./budgets.component.scss']
+	selector: 'app-budgets',
+	templateUrl: './budgets.component.html',
+	styleUrls: ['./budgets.component.scss']
 })
 export class BudgetsComponent implements OnInit {
 
-  modalRef!: BsModalRef;
-  message: string = '';
-  budgets?: any[];
+	modalRef!: BsModalRef;
 
-  bottons = ['Bien', 'Mal', 'Regular'];
+	budgets: Budget[] = [];
+	t_headers = [
+		{
+			name: 'ID',
+			value: 'id'
+		}, {
+			name: 'Nombre',
+			value: 'name'
+		}, {
+			name: 'Descripcion',
+			value: 'description'
+		}, {
+			name: 'Coste Total',
+			value: 'total'
+		}
+	];
 
-  constructor(
-    private _budgetsSvc: BudgetService,
-    private _router: Router,
-    private _modalService: BsModalService
-  ) { }
+	actions = [
+		{
+			title: 'see',
+			class: 'btn-link btn-sm"',
+			handler: (id: number) => this.goTo(id),
+			iconClass: 'bi bi-eye-fill'
+		},
+		{
+			title: 'destroy',
+			class: 'btn-link text-danger btn-sm"',
+			handler: (id: number) => this.openModal(id),
+			iconClass: 'bi bi-trash'
+		} 
+	];
 
-  ngOnInit(): void {
-    this.initialize();
-  }
+	constructor(
+		private _budgetsSvc: BudgetService,
+		private _router: Router,
+		private _modalService: BsModalService
+	) { }
 
-  async initialize() {
-        
-    try {
-      
-      this.budgets = await this._budgetsSvc.all().toPromise();
-      
-    } catch (error) {
-      console.log(error);
-    }
-  }
+	ngOnInit(): void {
+		this.initialize();
+	}
 
-  goTo(budget: any): void {
-    this._router.navigate(['/budgets', budget.id])
-  }
+	async initialize() {
 
-  async delete(id: number) {
+		try {
 
-    try {
-      const response = await this._budgetsSvc.delete(id).toPromise();
+			this.budgets = await this._budgetsSvc.all().toPromise();
 
-      if (response) {
-        this.initialize();
-      }
+		} catch (error) {
+			console.log(error);
+		}
+	}
 
-      this.modalRef.hide();
-    } catch (error) {
-      console.error("Deleting failed");
-    }
+	goTo(id: number): void {
+		this._router.navigate(['/budgets', id])
+	}
 
-  }
+	async delete(id: number) {
 
-  openModal(id: number) {
-    this.modalRef = this._modalService.show(ConfirmComponent, {
-      initialState: {
-        title: 'Are you sure?',
-        description: 'This will delete the budget ' + id + ' '
-      }
-    });
-    this.modalRef.content.text = 'Desea eliminar el presupuesto con id ' + id + '?';
-    const buttons: ConfirmButton[] = [{
-      title: 'Cancelar'
-    }, {
-      title: 'Borrar',
-      color: 'danger',
-      handler: () => {
-        this.delete(id);
-      }
-    }]
-    this.modalRef.content.buttons = buttons;
-  }
+		try {
+			const response = await this._budgetsSvc.delete(id).toPromise();
 
+			if (response) {
+				this.initialize();
+			}
+
+			this.modalRef.hide();
+		} catch (error) {
+			console.error("Deleting failed");
+		}
+
+	}
+
+	openModal(id: number) {
+		this.modalRef = this._modalService.show(ConfirmComponent, {
+			initialState: {
+				title: 'Are you sure?',
+				description: 'This will delete the budget with ID ' + id + '.'
+			},
+			class: 'modal-dialog-centered'
+		});
+
+		const buttons: ConfirmButton[] = [
+			{
+				title: 'Cancelar',
+				color: 'primary'
+
+				/* sin handler, puesto que confirm.component.ts handle lo cierra si no hay handler  */
+
+			}, {
+				title: 'Borrar',
+				color: 'danger',
+
+				handler: () => {
+					this.delete(id);
+				}
+			}
+		];
+
+		/* le pasa los botones al modal */
+		this.modalRef.content.buttons = buttons;
+	}
 
 }

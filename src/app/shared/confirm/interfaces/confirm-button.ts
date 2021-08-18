@@ -3,4 +3,5 @@ export interface ConfirmButton {
     color?: string;
     shape?: 'block' | 'round';
     handler?: () => void
+    
 }

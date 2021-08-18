@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
 
 	ngOnInit() {
 		//te suscribes al observable del behaviour para ver al usuario
-		this.authSvc.user$.subscribe(user => {			
+		this.authSvc.user$.subscribe(user => {
 			this.user = user;
 		});
 	}

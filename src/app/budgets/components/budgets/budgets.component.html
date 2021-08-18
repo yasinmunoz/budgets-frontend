@@ -1,40 +1,9 @@
 <div class="container">
-  <h4>Budgets <span class="badge badge-secondary"></span></h4>
+	<h4>Budgets <span class="badge badge-secondary"></span></h4>
 </div>
 
 <div class="container">
 
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th scope="col">id</th>
-        <th scope="col">Name</th>
-        <th scope="col">Description</th>
-        <th scope="col">Total Cost</th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr *ngFor="let budget of budgets">
-        <td (click)="goTo(budget)">{{ budget.id }}</td>
-        <td (click)="goTo(budget)">{{ budget.name }}</td>
-        <td (click)="goTo(budget)">{{ budget.description }}</td>
-        <td (click)="goTo(budget)">{{ budget.total }}</td>
-
-        <td class="d-flex justify-content-center">
-          <div class="container">
-            <div>
-              <button type="button" class="btn btn-link text-danger btn-sm" (click)="openModal(budget.id)">
-                <i class="bi bi-trash"></i>
-              </button>
-              
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
+	<app-table [data]="budgets" [headers]="t_headers" [buttons]="actions"></app-table>
 
 </div>

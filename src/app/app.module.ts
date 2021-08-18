@@ -8,6 +8,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { UsersModule } from './users/users.module';
     ModalModule.forRoot(),
     SharedModule,
     AuthModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

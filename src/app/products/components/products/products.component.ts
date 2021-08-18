@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { TableComponent } from 'src/app/shared/table/components/table.component';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Product } from '../../interfaces/product';
 import { ProductsService } from '../../services/products.service';
 

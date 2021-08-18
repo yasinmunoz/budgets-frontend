@@ -16,38 +16,48 @@
                         ⇋
                     </button>
                 </th>
+                <!-- cabecera vacia. para alargar la tabla en caso de botones -->
+                <th *ngIf="buttons?.length"></th>
             </tr>
         </thead>
+
         <tbody>
             <tr *ngFor="let item of data; let i = index ">
                 <td *ngFor="let j of headers">
 
+                    <!-- si true -> estrella -->
                     <ng-container *ngIf="item[j.value] === true; then star else voidFalseOrNot"></ng-container>
                     <ng-template #star>
                         <i class="fas fa-star"></i>
                     </ng-template>
                     <ng-template #voidFalseOrNot>
 
+                        <!-- si false -> vacio '' -->
                         <ng-template *ngIf="item[j.value] === false; then falseVoid else defaultTpt"></ng-template>
                         <ng-template #falseVoid>
                             {{''}}
                         </ng-template>
+
+                        <!-- si ni true ni false -> lo que haya -->
                         <ng-template #defaultTpt>
                             {{item[j.value]}}
                         </ng-template>
 
                     </ng-template>
-
                 </td>
 
-                <!-- <ng-fab position="right-top" direction="bottom" bgColor="#3D4300" top="80px">
-                    <ng-fab-item (click)="alert('View button clicked!')">
-                        <i class="fa fa-eye"></i>
-                    </ng-fab-item>
-                    <ng-fab-item icon="fa fa-pencil-alt" (click)="alert('Edit button clicked!')"> </ng-fab-item>
-                    <ng-fab-item icon="fa fa-trash" bgColor="red" (click)="alert('Delete button clicked!')"> </ng-fab-item>
-                </ng-fab> -->
+                <!-- si hay botones, añadimos mas columnas -->
+                <td *ngIf="buttons?.length">
+                    <!-- class="btn" [ngClass]="button.class" 
+                    se concatena la class nueva button + la clase que tenia button.class-->
+                    <button *ngFor="let button of buttons" class="btn" [ngClass]="button.class" 
+                    (click)="button.handler( item.id )">
+                        <i [ngClass]="button.iconClass"></i>
+                    </button>
+                </td>            
+
             </tr>
         </tbody>
     </table>
 </div>
+
