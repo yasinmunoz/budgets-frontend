@@ -7,9 +7,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
-import { UsersModule } from './users/users.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
@@ -20,11 +21,12 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ModalModule.forRoot(),
     SharedModule,
     AuthModule,
     NgbModule,
+    ModalModule.forRoot(),
     CollapseModule.forRoot(),
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

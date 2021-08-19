@@ -10,7 +10,8 @@ const routes : Routes = [
 		path : '',
 		component : ProductsComponent
 	} , {
-		path : ':id' //:id -> : = parametro
+		path : ':id', //:id -> : = parametro
+		component: ProductComponent
 	} , {
 		path : 'add'
 	}

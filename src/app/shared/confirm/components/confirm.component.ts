@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ConfirmButton } from '../interfaces/confirm-button';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -13,7 +12,6 @@ export class ConfirmComponent {
 
 	title!: string;
 	description!: string;
-	message!: string;
 
 	@Input() buttons: ConfirmButton[] = [];
 

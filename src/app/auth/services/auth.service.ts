@@ -37,7 +37,6 @@ export class AuthService {
 		this._user = value;
 		
 		this.user$.next(this._user);
-		console.log('set user: this.user$ = '+ this.user$);
 	}
 	/*------------------------------------------------------*/
 

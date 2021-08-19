@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -24,6 +25,7 @@ export class LogInComponent implements OnInit {
     public router: Router,
     public fb: FormBuilder,
     public auth_Service: AuthService,
+    private _toastSvc: ToastrService
   ) {
     this.loginForm = this.fb.group({
       email: [],
@@ -36,6 +38,8 @@ export class LogInComponent implements OnInit {
   async onSubmit() {
     try {
       const result: any = await this.auth_Service.login(this.loginForm.value);
+
+      this._toastSvc.success('Data correct','Subarashii');
 
       this.router.navigate(['users', 'profile', result.user.id]);
     } catch (error) {

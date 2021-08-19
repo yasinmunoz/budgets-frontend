@@ -5,9 +5,7 @@ import { Router } from '@angular/router';
 import { ConfirmButton } from 'src/app/shared/confirm/interfaces/confirm-button';
 import { ConfirmComponent } from 'src/app/shared/confirm/components/confirm.component';
 import { Budget } from '../../interfaces/budget';
-/* import { Directive, ElementRef } from '@angular/core';
- */
-
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -54,7 +52,8 @@ export class BudgetsComponent implements OnInit {
 	constructor(
 		private _budgetsSvc: BudgetService,
 		private _router: Router,
-		private _modalService: BsModalService
+		private _modalService: BsModalService,
+		private _toastSvc: ToastrService
 	) { }
 
 	ngOnInit(): void {
@@ -81,6 +80,8 @@ export class BudgetsComponent implements OnInit {
 		try {
 			const response = await this._budgetsSvc.delete(id).toPromise();
 
+			this._toastSvc.success('Se ha procedido a la desintegracion correctamente','Desintegrado');
+
 			if (response) {
 				this.initialize();
 			}
@@ -88,6 +89,7 @@ export class BudgetsComponent implements OnInit {
 			this.modalRef.hide();
 		} catch (error) {
 			console.error("Deleting failed");
+			this._toastSvc.error(error,'Desintegracion fallida');
 		}
 
 	}
