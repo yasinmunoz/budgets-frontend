@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PFirstLetterMayusPipe } from './pipes/p-FirstLetterMayus/p-first-letter-mayus.pipe';
 import { PFirstLetterLowerPipe } from './pipes/p-FirstLetterLower/p-first-letter-lower.pipe';
 import { PInvertColorPipe } from './pipes/p-InvertColor/p-invert-color.pipe';
@@ -11,6 +11,13 @@ import { PAbsolutePipe } from './pipes/p-Absolutey/p-absolute.pipe';
 import { TableComponent } from './table/components/table.component';
 import { ConfirmComponent } from './confirm/components/confirm.component';
 import { SortDirective } from './directive/sort.directive';
+import { BrowserComponent } from './browser/components/browser/browser.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { DetailComponent } from './detail/components/detail/detail.component';
+import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
+import { ImageComponent } from './image/components/image/image.component';
+
 
 @NgModule({
   declarations: [
@@ -24,10 +31,17 @@ import { SortDirective } from './directive/sort.directive';
     PAbsolutePipe,
     TableComponent,
     SortDirective,
+    BrowserComponent,
+    DetailComponent,
+    ImageComponent,
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ProgressbarModule.forRoot(),
   ],
   exports: [
     ConfirmComponent,
@@ -38,6 +52,7 @@ import { SortDirective } from './directive/sort.directive';
     PSlicePipe,
     PSumByPipe,
     PAbsolutePipe,
-    TableComponent
+    TableComponent,
+    DetailComponent,
   ]
 }) export class SharedModule { }

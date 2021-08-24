@@ -1,20 +1,241 @@
 <div class="container mt-5">
     <div class="card inner-main">
-        <div class="card-header">
-            product  {{product.id}} => {{ product.name}}
-        </div>
+        <h1 class="card-header">
+            <strong>
+                producto: {{product?.id}} => {{ product?.name}}
+            </strong>
+        </h1>
+
         <div class="card-body">
-            <p class="card-text">
-                Cantidad:
+
+            <div class="card-text">
                 <strong>
-                    {{ product.cuantity }}
+                    Description:
                 </strong>
-            </p>
-            <p class="card-text">Email:
+                <br>
+                Este producto proviene de otra dimension, de la dimension del fuego, sus caracteristicas son muy
+                singulares,.....
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                software like Aldus PageMaker including versions of Lorem Ipsum.
+            </div>
+
+            <div class="card" style="width: 18rem;">
+                <img src="assets/seele.jpg" class="card-img-right">
+
+                <div class="card-body">
+                    <div class="card-text">
+                        <strong>
+                            Subtitulo de img:
+                        </strong>
+                        <br>
+                        Seele significa "alma" en alemán. El símbolo de la organización se inspira en el diseño de
+                        la máscara de Lilith, un triángulo con siete ojos.
+                        <br> <br>
+                        En el rótulo aparece escrita la frase en alemán Überm Sternenzelt richtet Gott, wie wir
+                        gerichtet. Es una cita de la Oda a la Alegría, obra escrita por el poeta Friedrich von
+                        Schiller, siendo su traducción: Sobre el cielo estrellado juzga Dios, la forma en que
+                        nosotros juzgamos.
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="card-text">
                 <strong>
-                    
+                    <div *ngIf="!product?.type"></div>
+                    Categorizacion
                 </strong>
-            </p>
+                <br>
+                {{ product?.type?.name }}
+            </div>
+
+            <div class="card-text">
+                <strong>
+                    Cantidad:
+                </strong>
+                <br>
+                {{ product?.quantity }}
+            </div>
+
+            <div class="card-text">
+                <strong>
+                    Cantidad Maxima
+                </strong>
+                <br>
+                {{ product?.quantityMax }}
+            </div>
+
+            <!-- Progressbar-->
+
+            <div class="card-text">
+                <strong>
+                    Existencias
+                </strong>
+                <br>
+            </div>
+            <div class="mb-2">
+                <progressbar [max]="100" [value]="dynamic" [animate]="true">
+                    <span class="text-nowrap">
+                        {{(product.quantity * 100) / product.quantityMax}} %
+                    </span>
+                </progressbar>
+                <small>
+                    <em>
+                        Porcentaje de existencias
+                    </em>
+                </small>
+            </div>
+
+            <button type="button" class="btn btn-sm btn-primary" (click)="random()">
+                Randomizar
+            </button>
         </div>
     </div>
+
+    <br><br><br>
+
+</div>
+
+******************************************************************************
+<div>
+    <h1>
+        Detalles del producto
+    </h1>
+</div>
+
+<div *ngIf="product" class="container">
+    <form [formGroup]="productForm" ng-readonly="none">
+        <div class='row mx-sm-5'>
+            <!-- titulo -->
+            <div class="col">
+                <label>
+                    <strong>ID</strong>
+                </label>
+                <input class="form-control mt-2" formControlName="id" type="text" readonly>
+            </div>
+
+            <div class="col">
+                <label>
+                    <strong>Nombre</strong>
+                </label>
+                <input class="form-control mt-2" formControlName="name" type="text" [disabled]="disable">
+            </div>
+
+            <!-- estrellita de prioridad -->
+            <div class="col">
+                <ng-template *ngIf='product.prio; then ON else OFF'></ng-template>
+                <ng-template #ON>
+                    <button class="btn" (click)='fav()'>
+                        <img src="../../../../assets/iconos/destellos.png" height="40" width="55" alt="fav">
+                    </button>
+                </ng-template>
+                <ng-template #OFF>
+                    <button class="btn" (click)='fav()'>
+                        <img src="../../../../assets/iconos/destellosBlancoYNegro.png" height="40" width="55"
+                            alt="No fav">
+                    </button>
+                </ng-template>
+            </div>
+
+            <!-- boton editar -->
+            <div class="col">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-success" (click)='edit()'>
+                        Editar
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- descripcion e imagen-->
+        <div class='row mt-5'>
+            <!-- descripcion -->
+            <div class="col">
+                <label>
+                    <strong>Descripción</strong>
+                </label>
+
+                <input class="form-control mt-2" formControlName="description" type="text" rows="5"
+                    [disabled]="disable">
+                <!-- <input class="form-control mt-2" formControlName="description" type="text" rows="5"  readonly> -->
+            </div>
+
+            <!-- imagen -->
+            <div class="col">
+                <img [src]='product.image' alt="imagen del producto">
+            </div>
+        </div>
+
+        <!-- categoria -->
+        <div class="row mt-2">
+            <div class="col">
+                <label>
+                    <strong>Categorizacion</strong>
+                </label>
+                <input type="text" class="form-control mt-2" formControlName="typeName" [disabled]="disable">
+            </div>
+
+            <div class="col">
+                <label>
+                    <strong>Precio x unidad</strong>
+                </label>
+                <input type="text" class="form-control mt-2" formControlName="price" [disabled]="disable">
+            </div>
+
+        </div>
+
+        <!-- cantidad y cantidad max -->
+        <div class="row mt-5">
+            <!-- cantidad -->
+            <div class="col">
+                <label>
+                    <strong>Ecistencias</strong>
+                </label>
+                <input type="text" class="form-control mt-2" formControlName="quantity" [disabled]="disable">
+            </div>
+            <!-- umbral superior -->
+            <div class="col">
+                <label>
+                    <strong>Umbral máximo</strong>
+                </label>
+                <input type="text" class="form-control mt-2" formControlName="quantityMax" [disabled]="disable">
+            </div>
+        </div>
+
+        <!-- barra de progreso -->
+        <div class="mt-5">
+
+            <div class="progress position-relative" style="height: 20px;">
+                <div class="progress-bar" role="progressbar" [style]="progressbar()" aria-valuenow="" aria-valuemin="0"
+                    aria-valuemax="100"></div>
+                <small class="justify-content-center d-flex position-absolute w-100">
+                    <strong> {{ porcentaje}} % </strong>
+                </small>
+            </div>
+
+            <small>
+                <em>
+                    Porcentaje de Existencias
+                </em>
+            </small>
+        </div>
+
+        <div class="mt-5">
+            <button class="btn btn-primary mt-5" [routerLink]="['/products']">
+                volver
+            </button>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-success" (click)='save()' type="button">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </form>
 </div>

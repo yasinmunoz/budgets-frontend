@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { first, tap } from 'rxjs/operators';
 import { Product } from '../../interfaces/product';
 import { ProductsService } from '../../services/products.service';
+
 
 @Component({
 	selector: 'app-product',
@@ -9,33 +12,98 @@ import { ProductsService } from '../../services/products.service';
 	styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
-	
-	id!:any;
-	product !: Product;
+
+	id!: any;
+	product  !: any;
+	randomUM !: number;
+	favorite !: boolean;
+	porcentaje !: number;
+	disable: boolean = false;
+	stylePB!: string
+
+	productForm: FormGroup = this._formBuilder.group({
+		id: [null],
+		prio: [null],
+		name: [null],
+		price: [null, [Validators.required]],
+		typeName: [null],
+		quantity: [null, [Validators.required]],
+		quantityMax: [null, [Validators.required]],
+		description: [null],
+	});
 
 	constructor(private _route: ActivatedRoute,
-		private _productSvc: ProductsService) { }
+		private _productSvc: ProductsService,
+		private _formBuilder: FormBuilder) { }
 
 	ngOnInit(): void {
-		console.log('ngOnInit 0');
-		
 		this.id = this._route.snapshot.paramMap.get('id');
 
-		if(this.id){
+		if (this.id) {
 			this.id = parseInt(this.id);
-			
+
 			this.initialize();
-			console.log('a');
-			
 		}
 	}
 
-	async initialize(){
-		console.log('initiaze 0');
+	async initialize() {
 		this.product = await this._productSvc.get(this.id).toPromise();
-		console.log(this.product);
+
+		/* estos 2 att quantityMax no se llama asi en la BBDD y typeName no existe porque es una tabla aparte */
+		this.product.quantityMax = this.product.quantity_max;
+		this.product.typeName = this.product.type.name;
+
+		this.porcentaje = (this.product.quantity * 100) / this.product.quantityMax
+		this.progressbar();
+
+		this.productForm.patchValue(this.product);
+		this.productForm.disable();
 		
-		
+	}
+
+	fav() {
+		if (this.product.prio) {
+			this.product.prio = false;
+		} else {
+			this.product.prio = true;
+		}
+		this.productForm.patchValue(this.product);
+	}
+
+	async save() {
+		const data = this.productForm.value;
+
+		try {
+			const result = await this._productSvc.saveEdit(data).toPromise();
+
+		} catch (error) {
+			console.log('Saving failed');
+		}
+	}
+
+	edit() {
+		if (this.disable) {
+			this.disable = false;
+			this.productForm.disable();
+		} else {
+			this.disable = true;
+			this.productForm.enable();
+		}
+	}
+
+	progressbar(){
+		return this.stylePB = 'width: '+ this.porcentaje + '%';
+	}
+
+	/* PROGRESSBAR ===================================================== */
+
+	dynamic!: number;
+
+	random(): void {
+		const value = Math.floor(Math.random() * 100 + 1);
+
+		this.dynamic = this.porcentaje;
+		this.dynamic = value;
 	}
 
 }

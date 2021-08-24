@@ -66,7 +66,6 @@ export class ProductsComponent implements OnInit {
 		private _modalService: BsModalService,
 		private _router: Router,
 		private _toastSvc : ToastrService,
-		private _budgetSvc: BudgetService
 		) { }
 
 	ngOnInit(): void {
@@ -75,6 +74,7 @@ export class ProductsComponent implements OnInit {
 
 	async initialize() {
 		try {
+			
 			this.products = (await this._productsSvc.all().toPromise()).map((product: Product) => {
 				
 				if(product.type.name === 'untype'){

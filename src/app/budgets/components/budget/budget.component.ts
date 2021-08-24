@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BudgetService } from '../../services/budget.service';
-import { first, map, tap } from 'rxjs/operators';
+import { first, tap } from 'rxjs/operators';
 import { Budget } from '../../interfaces/budget';
 import { Observable } from 'rxjs';
 
