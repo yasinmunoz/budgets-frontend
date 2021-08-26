@@ -14,9 +14,15 @@ import { SortDirective } from './directive/sort.directive';
 import { BrowserComponent } from './browser/components/browser/browser.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { DetailComponent } from './detail/components/detail/detail.component';
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 import { ImageComponent } from './image/components/image/image.component';
+
+import {HttpClientModule} from 
+    '@angular/common/http';
+    
+import { BrowserModule } from 
+'@angular/platform-browser';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 
 
 @NgModule({
@@ -32,7 +38,6 @@ import { ImageComponent } from './image/components/image/image.component';
     TableComponent,
     SortDirective,
     BrowserComponent,
-    DetailComponent,
     ImageComponent,
   ],
   imports: [
@@ -42,6 +47,9 @@ import { ImageComponent } from './image/components/image/image.component';
     MatFormFieldModule,
     MatInputModule,
     ProgressbarModule.forRoot(),
+
+    HttpClientModule,
+    
   ],
   exports: [
     ConfirmComponent,
@@ -53,6 +61,6 @@ import { ImageComponent } from './image/components/image/image.component';
     PSumByPipe,
     PAbsolutePipe,
     TableComponent,
-    DetailComponent,
+    ImageComponent,
   ]
 }) export class SharedModule { }

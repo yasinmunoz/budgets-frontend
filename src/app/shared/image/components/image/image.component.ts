@@ -1,26 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-image',
-  templateUrl: './image.component.html',
-  styleUrls: ['./image.component.scss']
+	selector: 'app-image',
+	templateUrl: './image.component.html',
+	styleUrls: ['./image.component.scss']
 })
 export class ImageComponent implements OnInit {
 
-  files: any = [];
-  preview!: string;
+	constructor() { }
 
-  constructor() { }
+	ngOnInit(): void {
+	}
 
-  ngOnInit(): void {
-  }
+	url: string = '';
 
-  catchFile($event: any){
-    //obtiene la imagen
-    const capturedFile = $event.target.files[0];
-    //aray donde dentro tenemos la imagen
-    this.files.push(capturedFile);
+	onSelectFile(e: any) {
+		if (e.target.files) {
+			let reader = new FileReader(); 1
 
-    this.preview = atob(capturedFile)
-  }
+			reader.readAsDataURL(e.target.files[0]);
+			reader.onload = (event: any) => {
+				this.url = event.target.result;
+			}
+		}
+	}
 }

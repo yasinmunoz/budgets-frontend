@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { first, tap } from 'rxjs/operators';
 import { Product } from '../../interfaces/product';
 import { ProductsService } from '../../services/products.service';
+import { environment } from 'src/environments/environment';
+import { fromEvent } from 'rxjs';
 
 
 @Component({
@@ -21,14 +23,17 @@ export class ProductComponent implements OnInit {
 	disable: boolean = false;
 	stylePB!: string
 
+	quantityNow    : FormControl = new FormControl();
+	quantityMaxNow : FormControl = new FormControl();
+
 	productForm: FormGroup = this._formBuilder.group({
-		id: [null],
-		prio: [null],
-		name: [null],
-		price: [null, [Validators.required]],
-		typeName: [null],
-		quantity: [null, [Validators.required]],
-		quantityMax: [null, [Validators.required]],
+		id: 		 [null],
+		prio: 		 [null],
+		name: 		 [null],
+		price: 		 [null, Validators.required],
+		typeName: 	 [null],
+		quantity:    [Number, [Validators.required, Validators.min(0)]],
+		quantityMax: [Number, Validators.required],
 		description: [null],
 	});
 
@@ -38,15 +43,18 @@ export class ProductComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.id = this._route.snapshot.paramMap.get('id');
-
+		
 		if (this.id) {
 			this.id = parseInt(this.id);
 
-			this.initialize();
+			this.getProduct();
+
+		} else{
+			this.addProduct();
 		}
 	}
 
-	async initialize() {
+	async getProduct() {
 		this.product = await this._productSvc.get(this.id).toPromise();
 
 		/* estos 2 att quantityMax no se llama asi en la BBDD y typeName no existe porque es una tabla aparte */
@@ -59,6 +67,19 @@ export class ProductComponent implements OnInit {
 		this.productForm.patchValue(this.product);
 		this.productForm.disable();
 		
+	}
+
+	addProduct(){
+		this.productForm.reset();
+	}
+
+	porcentajeMethod(){
+		// fromevent rxjs
+		this.porcentaje = (+this.quantityNow * 100) / +this.quantityMaxNow;
+		console.log(this.porcentaje);
+		
+		
+		this.progressbar();
 	}
 
 	fav() {

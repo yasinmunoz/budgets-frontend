@@ -50,14 +50,21 @@
                 <td *ngIf="buttons?.length">
                     <!-- class="btn" [ngClass]="button.class" 
                     se concatena la class nueva button + la clase que tenia button.class-->
-                    <button *ngFor="let button of buttons" class="btn" [ngClass]="button.class" 
-                    (click)="button.handler( item.id )">
-                        <i [ngClass]="button.iconClass"></i>
+                    <button *ngFor="let button of buttons" class="btn" [ngClass]="button.class"
+                        (click)="button.handler( item.id )">
+
+                       <ng-container *ngIf='button.src; then buttonTpt else iconTpt'></ng-container>
+                        <ng-template #buttonTpt>
+                            <img [src]="button.src" role="button" width="50px">
+                        </ng-template>
+
+                        <ng-template #iconTpt>
+                            <i [ngClass]="button.iconClass"  width="50px"></i>
+                        </ng-template>
                     </button>
-                </td>            
+                </td>
 
             </tr>
         </tbody>
     </table>
 </div>
-

@@ -5,7 +5,7 @@ import { ProductComponent } from './components/product/product.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes : Routes = [
 	{
@@ -15,7 +15,8 @@ const routes : Routes = [
 		path : ':id', //:id -> : = parametro
 		component: ProductComponent
 	} , {
-		path : 'add'
+		path : 'add',
+		component: ProductComponent
 	}
 ]
 
@@ -29,7 +30,8 @@ const routes : Routes = [
 		RouterModule.forChild(routes),
 		SharedModule,
 		ProgressbarModule.forRoot(),
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		FormsModule
 	]
 })
 export class ProductsModule { }

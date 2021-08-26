@@ -4,6 +4,12 @@
 
 <div class="container">
 
+	<div class="container mt-2 mb-2">
+        <button class="btn btn-primary" [routerLink]="['add']" routerLinkActive="router-link-active">
+            Añadir
+        </button>
+    </div>
+
 	<app-table [data]="budgets" [headers]="t_headers" [buttons]="actions"></app-table>
 
 </div>

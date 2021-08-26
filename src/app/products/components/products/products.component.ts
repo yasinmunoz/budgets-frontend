@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
-import { BudgetService } from 'src/app/budgets/services/budget.service';
 import { ConfirmComponent } from 'src/app/shared/confirm/components/confirm.component';
 import { ConfirmButton } from 'src/app/shared/confirm/interfaces/confirm-button';
 import { Product } from '../../interfaces/product';
@@ -48,8 +47,14 @@ export class ProductsComponent implements OnInit {
 			title: 'see',
 			class: 'btn-link btn-sm"',
 			handler: (id: number) => this.goTo(id),
-			iconClass: 'bi bi-eye-fill'
+			src: '../../../../assets/iconos/soul_eater_kishin_eyes.png'
 		},
+		/* {
+			title: 'see',
+			class: 'btn-link btn-sm"',
+			handler: (id: number) => this.goTo(id),
+			iconClass: 'bi bi-eye-fill'
+		}, */
 		{
 			title: 'destroy',
 			class: 'btn-link text-danger btn-sm"',
@@ -89,9 +94,6 @@ export class ProductsComponent implements OnInit {
 		} catch (error) {
 			console.log(error);
 		}
-	}
-
-	add(){
 	}
 
 	goTo(id: number): void {
