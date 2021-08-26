@@ -32,8 +32,8 @@ export class ProductComponent implements OnInit {
 		name: 		 [null],
 		price: 		 [null, Validators.required],
 		typeName: 	 [null],
-		quantity:    [Number, [Validators.required, Validators.min(0)]],
-		quantityMax: [Number, Validators.required],
+		quantity:    [0, Number, [Validators.required, Validators.min(0)]],
+		quantityMax: [0, Number, Validators.required],
 		description: [null],
 	});
 
